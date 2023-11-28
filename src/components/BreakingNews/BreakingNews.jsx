@@ -10,7 +10,6 @@ const BreakingNews = () => {
       .catch((error) => console.error("Error fetching breaking news:", error));
   }, []);
 
-  console.log("break me", breakingNews);
 
   return (
     <div className="flex">

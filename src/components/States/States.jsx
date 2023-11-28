@@ -1,42 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { FaBookReader } from "react-icons/fa";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { FcReadingEbook } from "react-icons/fc";
+
+import { MdEmojiEvents } from "react-icons/md";
+
+import CountUp from 'react-countup';
 
 const States = () => {
-    return (
-        <div className="stats shadow">
-  
-  <div className="stat">
-    <div className="stat-figure text-primary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-    </div>
-    <div className="stat-title">Total Likes</div>
-    <div className="stat-value text-primary">25.6K</div>
-    <div className="stat-desc">21% more than last month</div>
-  </div>
-  
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-    </div>
-    <div className="stat-title">Page Views</div>
-    <div className="stat-value text-secondary">2.6M</div>
-    <div className="stat-desc">21% more than last month</div>
-  </div>
-  
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <div className="avatar online">
-        <div className="w-16 rounded-full">
-          <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [normalUsers, setNormalUsers] = useState(0);
+  const [premiumUsers, setPremiumUsers] = useState(0);
+
+  // Dummy data - Replace this with your actual data fetching logic
+  useEffect(() => {
+    // Simulating data fetching from an API
+    const fetchData = async () => {
+      // Replace these values with actual counts from your data source
+      const totalUsersCount = 1000;
+      const normalUsersCount = 800;
+      const premiumUsersCount = 200;
+
+      setTotalUsers(totalUsersCount);
+      setNormalUsers(normalUsersCount);
+      setPremiumUsers(premiumUsersCount);
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div className="stats shadow flex justify-center items-center  text-center container mx-auto">
+      {/* Total Users */}
+      <div className="stat   space-y-3 flex flex-col justify-center items-center hover:bg-green-500 hover:text-white py-4">
+        <div className="text-7xl text-primary-content "> <MdEmojiEvents></MdEmojiEvents></div>
+        <div className="stat-value ">
+          <CountUp end={totalUsers} duration={2} />
         </div>
+        <div className="stat-title">Total Users</div>
+        
       </div>
-    </div>
-    <div className="stat-value">86%</div>
-    <div className="stat-title">Tasks done</div>
-    <div className="stat-desc text-secondary">31 tasks remaining</div>
-  </div>
-  
+
+      {/* Normal Users */}
+      <div className="stat  space-y-3  flex flex-col justify-center items-center hover:bg-primary-content py-4">
+        <div className="text-7xl text-primary-content  "> <FcReadingEbook></FcReadingEbook></div>
+        <div className="stat-value ">
+          <CountUp end={normalUsers} duration={2} />
+        </div>
+        <div className="stat-title">Regular Users</div>
+        
+      </div>
+
+      {/* Premium Users */}
+      <div className="stat  space-y-3  flex flex-col justify-center items-center hover:bg-amber-500 hover:text-white py-4">
+        <div className="text-7xl text-primary-content "><GiTakeMyMoney></GiTakeMyMoney>
 </div>
-    );
+        <div className="stat-value ">
+          <CountUp end={premiumUsers} duration={2} />
+        </div>
+        <div className="stat-title">Premium Users</div>
+        
+      </div>
+        
+
+ 
+    </div>
+  );
 };
 
 export default States;

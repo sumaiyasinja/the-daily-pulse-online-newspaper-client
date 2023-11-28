@@ -11,7 +11,7 @@ const Heading = () => {
       <div className="text-gray-400"> 
         {/* <p>{moment().format("dddd")}</p> */}
         <p> {moment().format("dddd, MMMM D, YYYY")}</p>
-        <p className="text-center">{moment().format("h:mm:ss a")}</p>
+        <p className="text-center">{moment().format("h:mm a")}</p>
       </div>
     </div>
   );
