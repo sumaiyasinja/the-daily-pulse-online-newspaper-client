@@ -41,7 +41,12 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+
+        <div className="avatar online">
+  <div className="w-9 ring ring-slate-600 rounded-full">
+    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+  </div>
+</div>
         </div>
       </div>
       <BreakingNews></BreakingNews>

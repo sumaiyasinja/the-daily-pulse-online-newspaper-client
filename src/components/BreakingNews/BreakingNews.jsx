@@ -1,29 +1,25 @@
 import { useEffect, useState } from "react";
-import Marquee from "react-fast-marquee";
+import BreakingNewsSingle from "./BreakingNewsSIngle";
 
 const BreakingNews = () => {
   const [breakingNews, setBreakingNews] = useState([]);
-
   useEffect(() => {
-    fetch('/breakingNews.json')
+    fetch("/breakingNews.json")
       .then((res) => res.json())
       .then((data) => setBreakingNews(data))
       .catch((error) => console.error("Error fetching breaking news:", error));
   }, []);
 
-  console.log(breakingNews);
+  console.log("break me", breakingNews);
 
   return (
-    <div>
-      <h1>Breaking News</h1>
-     {
-       breakingNews.map((news, index) => (
-         <Marquee key={index}>
-           <h1>{news.headline}</h1>
-           <h3>{news.source}</h3>
-         </Marquee>
-       ))
-     }
+    <div className="flex">
+      <h1 className="text-blue-400 font-semibold w-40">Breaking News</h1>
+      <div className="flex ">
+        {breakingNews.map((news, index) => (
+          <BreakingNewsSingle key={index} news={news}></BreakingNewsSingle>
+        ))}
+      </div>
     </div>
   );
 };

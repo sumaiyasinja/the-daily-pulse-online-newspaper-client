@@ -1,12 +1,11 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css';
-import 'swiper/css/pagination';
+// import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation,  } from 'swiper/modules';
 import '../../css/sweeper.css'; // Import your custom CSS file for styling
 
 const Banner = () => {
@@ -27,10 +26,10 @@ const Banner = () => {
           disableOnInteraction: false,
         }}
         navigation={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Autoplay, Navigation, Pagination]}
+        // pagination={{
+        //   clickable: true,
+        // }}
+        modules={[Autoplay, Navigation]}
         className="mySwiper"
       >
        <div className='flex justify-center items-center'>

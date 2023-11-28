@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@egjs/flicking-plugins": "^4.7.1",
-    "@egjs/react-flicking": "^4.11.1",
     "axios": "^1.6.2",
     "firebase": "^10.6.0",
     "gsap": "^3.12.2",
@@ -29,9 +27,7 @@
     "react-router-dom": "^6.20.0",
     "react-select": "^5.8.0",
     "react-simple-typewriter": "^5.0.1",
-    "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1",
-    "sort-by": "^1.2.0",
+    "sort-by": "^0.0.2",
     "swiper": "^11.0.5"
   },
   "devDependencies": {
@@ -39,7 +35,7 @@
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.16",
-    "daisyui": "^4.4.4",
+    "daisyui": "^4.4.9",
     "eslint": "^8.53.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
