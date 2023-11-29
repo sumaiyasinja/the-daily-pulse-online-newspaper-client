@@ -1,5 +1,4 @@
-                                
-<h2>##website_Name:The Daily Pulse</h2>
+# The Daily Pulse
 
 [The Daily Pulse](https://newspaper-fe849.web.app/)
 
@@ -7,13 +6,25 @@
 
 - [@sumaiyasinja](https://github.com/sumaiyasinja)
 
-
 ## Features
-- top 6 articles banner with eye catching annimation            
-- mongoDB database insert, update,read operation
-- Firebase: email password,& google authentication system
-- Responsive homepage for all devices
-- Multiple roled user: admin,normal,premium etc
-- stripe payment getway for premium article subscription
-- jwt cookies varification for user and admin routes
 
+### Top 6 Articles Banner
+- Eye-catching animation for the top 6 articles.
+
+### MongoDB Database Operations
+- Insert, update, and read operations using MongoDB.
+
+### Firebase Integration
+- Authentication system using Firebase for email, password, and Google authentication.
+
+### Responsive Homepage
+- Designed to be responsive on all devices.
+
+### User Roles
+- Supports multiple user roles such as admin, normal, premium, etc.
+
+### Stripe Payment Gateway
+- Integration of Stripe for premium article subscription payments.
+
+### JWT Cookies Verification
+- Utilizes JWT (JSON Web Tokens) for cookies verification on user and admin routes.
