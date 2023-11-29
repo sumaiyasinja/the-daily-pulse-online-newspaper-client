@@ -6,7 +6,17 @@ const Navbar = () => {
     const NavLinks = <>
         <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">Home</NavLink>
         <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">Add Articles</NavLink>
-        <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">All Articles</NavLink>
+        <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/allArticles
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ">All Articles</NavLink>
         <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">Subscription</NavLink>
         <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">Dashboard(admin)</NavLink>
         <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">My Articles

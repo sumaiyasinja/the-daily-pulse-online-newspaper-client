@@ -32,7 +32,7 @@ const States = () => {
   return (
     <div className="stats shadow flex justify-center items-center  text-center container mx-auto">
       {/* Total Users */}
-      <div className="stat   space-y-3 flex flex-col justify-center items-center hover:bg-green-500 hover:text-white py-4">
+      <div className="stat   space-y-3 flex flex-col justify-center items-center hover:bg-green-400 hover:text-white py-4">
         <div className="text-7xl text-primary-content "> <MdEmojiEvents></MdEmojiEvents></div>
         <div className="stat-value ">
           <CountUp end={totalUsers} duration={2} />

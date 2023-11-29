@@ -4,6 +4,7 @@ import Main from "../Layout/Main";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import AllArticles from "../pages/Articales/AllArticles";
 
 
  const router = createBrowserRouter([
@@ -15,6 +16,10 @@ import Register from "../pages/Register/Register";
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/allArticles",
+        element: <AllArticles />,
       },
      
       {

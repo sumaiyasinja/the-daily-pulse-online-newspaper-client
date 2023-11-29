@@ -40,7 +40,7 @@ const Sponsor = () => {
             </Link>
             {/* link to intel web */}
             <Link
-              to="https://www.google.com"
+              to="https://www.docker.com/"
               className="sponsor-link transform transition-transform hover:scale-110"
               target="_blank"
               rel="noopener noreferrer"

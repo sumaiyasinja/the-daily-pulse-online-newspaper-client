@@ -6,12 +6,10 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation,  } from 'swiper/modules';
-import '../../css/sweeper.css'; // Import your custom CSS file for styling
+import '../../css/sweeper.css';
 
 const Banner = () => {
-//   const handleSlideChange = (swiper) => {
-    // const centeredSlideIndex = swiper.realIndex;
-//   };
+
 
   return (
     <div className="">
