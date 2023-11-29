@@ -18,9 +18,9 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const name = form.Name.value;
-    const photo = form.photo.value;
+    const photoURL = form.photo.value;
 
-    console.log(email, password, name, photo);
+    console.log(email, password, name, photoURL);
     if (password.length < 6) {
 
       return toast.error("Password must be at least 6 characters")
@@ -39,7 +39,7 @@ const Register = () => {
     // Update user profile here
     updateProfile(auth.currentUser, {
       displayName: name, 
-      photoURL: photo, 
+      photoURL: photoURL, 
     })
       .then(() => {
         console.log("Profile data updated!");
@@ -123,7 +123,7 @@ const Register = () => {
                 type="Photo"
                 name="photo"
                 placeholder="Your profile Photo URL link "
-                required
+                // required
                 className="w-full rounded-md focus:ring focus:ring-blue-300 border-gray-300"
               />
             </div>

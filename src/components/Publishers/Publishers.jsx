@@ -31,13 +31,13 @@ export const Publishers = () => {
                 height="24"
               />
             </svg>
-            <span className="relative">Welcome</span>
+            <span className="relative">Connect with</span>
           </span>{" "}
-          our talented team of professionals
+          our talented publisher of the daily pulse
         </h2>
         <p className="text-base text-gray-700 md:text-lg">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque rem aperiam, eaque ipsa quae.
+        Exploring the Depths of Truth: All of our puslisher are committed to Upholding the honest artices . No biasness in our articles are allowed, nor any fake news.
+
         </p>
       </div>
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">

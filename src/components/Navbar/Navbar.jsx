@@ -1,10 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import BreakingNews from "../BreakingNews/BreakingNews";
 import useAuth from "../../hooks/useAuth";
-import Login from "./../../pages/Login/Login";
+import toast, {  Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const handleLogOut =()=>{        
+    logOut()
+    .then (()=> {
+        toast.success("logged out successfully.")
+    })
+    .catch(error => {
+        console.log('failed logging out')
+
+        toast.error("error occured while doing logout", error.message)})
+}
+
+
   const NavLinks = (
     <>
       <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
@@ -34,10 +46,12 @@ const Navbar = () => {
      
      
     </>
+    
   );
 
   return (
-    <div>
+    <div className=" z-50">
+      <Toaster></Toaster>
       <div className="navbar bg-slate-800 text-white">
         <div className="navbar-start">
           <div className="dropdown">
@@ -78,30 +92,44 @@ const Navbar = () => {
 
             <>
             
-           <button onClick={logOut} className="hover:bg-gray-400 px-2 py-1 rounded mr-2" to="/">
+           <button onClick={handleLogOut} className="hover:bg-gray-400 px-2 py-1 rounded mr-2" to="/">
                 logout
             </button>
-            <div className="avatar online">
+            <Link to="/profile" className="avatar online">
               <div className="w-9 ring ring-green-600 rounded-full">
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                {user.photoURL ? 
+                <img src={user?.photoURL} alt="" />:
+                <img src="https://i.ibb.co/s65Z563/CITYPNG-COM-Profile-User-Round-White-Icon-Symbol-PNG-1000x1000.png" className="" />}
               </div>
-            </div>
+              
+            </Link>
+            
             </>
           ) : (
             <>
              <NavLink className="hover:bg-gray-400 px-2 py-1 rounded mr-2" to="/login">
               Login
             </NavLink>
-            <div className="avatar offline">
-              <div className="w-9 ring ring-slate-600 rounded-full">
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-              </div>
-            </div>
+             <NavLink className="hover:bg-gray-400 px-2 py-1 rounded mr-2" to="/register">
+              Register
+            </NavLink>
+            
             </>
           )}
         </div>
+        
       </div>
-      <BreakingNews></BreakingNews>
+      {/* todo : future word if dropdowen menu needed */}
+      {/* {   user && dropdown ?
+       
+        <ul className="absolute z-[60] right-2 menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
+          <Link to="/profile" className="w-full text-center rounded hover:bg-blue-300 hover:text-white hover:font-semibold">My Profile</Link>
+          <li onClick={handleLogOut} className="w-full text-center rounded hover:bg-blue-300 hover:text-white hover:font-semibold">Logout</li>
+        </ul>
+      :<></>
+      }     */}
+ <BreakingNews></BreakingNews>
+
     </div>
   );
 };
