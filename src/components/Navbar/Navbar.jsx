@@ -22,27 +22,44 @@ const Navbar = () => {
       <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
         Home
       </NavLink>
-      <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
-        Add Articles
-      </NavLink>
       <NavLink
         className="hover:bg-blue-400 px-2 py-1 rounded"
         to="/allArticles"
       >
         All Articles
       </NavLink>
-      <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
+      <NavLink
+        className="hover:bg-blue-400 px-2 py-1 rounded"
+        to="/aboutUs"
+      >
+About Us     
+ </NavLink>
+      {
+        user ? 
+        <>
+        <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
+        Premium Articles
+      </NavLink>
+        <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
         Subscription
       </NavLink>
+      
       <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
-        Dashboard(admin)
+        Add Articles
       </NavLink>
       <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
         My Articles
       </NavLink>
       <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
-        Premium Articles
+        Dashboard(admin)
       </NavLink>
+      
+        </>
+        : <></>
+      }
+      
+      
+      
      
      
     </>

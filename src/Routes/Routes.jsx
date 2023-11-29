@@ -12,6 +12,7 @@ import Subscription from "../pages/Subscription/Subscription";
 import Dashboard from "../Layout/Dashboard";
 import MyArticles from "../pages/Articales/MyArticles";
 import ArticleDetails from './../pages/Articales/ArticleDetails';
+import AboutUs from './../pages/AboutUs/AboutUs';
 
 
  const router = createBrowserRouter([
@@ -23,6 +24,10 @@ import ArticleDetails from './../pages/Articales/ArticleDetails';
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs />,
       },
       {
         path: "/allArticles",
