@@ -7,6 +7,11 @@ import Register from "../pages/Register/Register";
 import AllArticles from "../pages/Articales/AllArticles";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import PrivateRoute from "./PrivateRoute";
+import AddArticles from "../pages/Articales/AddArticles";
+import Subscription from "../pages/Subscription/Subscription";
+import Dashboard from "../Layout/Dashboard";
+import MyArticles from "../pages/Articales/MyArticles";
+import ArticleDetails from './../pages/Articales/ArticleDetails';
 
 
  const router = createBrowserRouter([
@@ -23,6 +28,11 @@ import PrivateRoute from "./PrivateRoute";
         path: "/allArticles",
         element: <AllArticles />,
       },
+      {
+        path: "/article/:id",
+        element: <PrivateRoute><ArticleDetails /></PrivateRoute>,
+        // loader: ({ params }) => params,
+      },
      
       {
         path: "/login",
@@ -31,6 +41,22 @@ import PrivateRoute from "./PrivateRoute";
       {
         path: "/register",
         element: <Register></Register>
+      },
+      {
+        path: "/addArticle",
+        element: <PrivateRoute><AddArticles></AddArticles></PrivateRoute>
+      },
+      {
+        path: "/subscription",
+        element: <PrivateRoute><Subscription></Subscription></PrivateRoute>
+      },
+      {
+        path: "/dashboard",
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+      },
+      {
+        path: "/myArticles,",
+        element: <PrivateRoute><MyArticles></MyArticles></PrivateRoute>
       },
       {
         path: "/profile",

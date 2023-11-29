@@ -1,8 +1,19 @@
-# React + Vite
+                                
+<h2>##website_Name:The Daily Pulse</h2>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[The Daily Pulse](https://newspaper-fe849.web.app/)
 
-Currently, two official plugins are available:
+## Authors
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [@sumaiyasinja](https://github.com/sumaiyasinja)
+
+
+## Features
+- top 6 articles banner with eye catching annimation            
+- mongoDB database insert, update,read operation
+- Firebase: email password,& google authentication system
+- Responsive homepage for all devices
+- Multiple roled user: admin,normal,premium etc
+- stripe payment getway for premium article subscription
+- jwt cookies varification for user and admin routes
+
