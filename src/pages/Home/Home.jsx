@@ -6,16 +6,16 @@ import States from "../../components/States/States";
 import Banner from "./Banner";
 
 const Home = () => {
-    return (
-        <div>
-            <Banner></Banner>
-            <NewsContainer></NewsContainer>
-            <CategorizedNews></CategorizedNews>
-            <States></States>
-            <Publishers></Publishers>
-            <Sponsor></Sponsor>
-        </div>
-    );
+  return (
+    <div>
+      <Banner></Banner>
+      <NewsContainer></NewsContainer>
+      <CategorizedNews></CategorizedNews>
+      <States></States>
+      <Publishers></Publishers>
+      <Sponsor></Sponsor>
+    </div>
+  );
 };
 
 export default Home;

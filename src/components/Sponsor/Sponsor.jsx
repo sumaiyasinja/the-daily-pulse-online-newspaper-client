@@ -1,4 +1,3 @@
-import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
 
 const Sponsor = () => {

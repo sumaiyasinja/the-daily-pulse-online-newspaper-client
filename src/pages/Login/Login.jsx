@@ -1,14 +1,37 @@
 
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
+  const {loginWithEmailAndPasword,loginWithGoogle} = useAuth()
+  const navigate = useNavigate()
+  const location =useLocation()
   const handleLogin=(e)=>{
     e.preventDefault()
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-  }
+    
+    loginWithEmailAndPasword(email, password)
+        .then(()=> {
+            
+            toast.success("Succefully logged in")
+            
+            navigate(location?.state ? location?.state :'/')
+        })
+          .catch(e=> toast.error(e.message))
+    }
+    // const handleGoogleLogin = () => {
+    //     loginWithGoogle()
+    //     .then(()=> {
+    //         toast.success("Succefully logged in with google.")
+    //         navigate(location.state ? location.state :'/')
+    //     })
+    //       .catch(e=> toast.error(e.message))
+        
+    // }
           return (
             <section className="p-6 bg-gray-100 text-gray-800">
               <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5">
