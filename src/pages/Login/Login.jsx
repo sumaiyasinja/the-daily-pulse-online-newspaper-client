@@ -2,6 +2,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { FaGoogle } from "react-icons/fa";
+import "../../css/GoogleSignInButton.css";
+
 
 const Login = () => {
   const { loginWithEmailAndPasword, loginWithGoogle } = useAuth();
@@ -75,7 +77,7 @@ const Login = () => {
               </Link>
             </p>
             <button
-              className="bg-blue-600 text-gray-50 flex items-center justify-center gap-3  w-full"
+              className="bg-blue-600 text-gray-50 py-2 flex items-center justify-center gap-3  w-full"
               onClick={handleGoogleSignIn}
             >
               <FaGoogle />

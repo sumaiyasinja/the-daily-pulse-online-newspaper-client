@@ -4,7 +4,6 @@ import { FaGoogle } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
-// import { useSpring, animated } from "react-spring";
 import useAuth from "./../../hooks/useAuth";
 
 const Register = () => {

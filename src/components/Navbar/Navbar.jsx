@@ -44,7 +44,7 @@ About Us
         Subscription
       </NavLink>
       
-      <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
+      <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/addArticle">
         Add Articles
       </NavLink>
       <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
