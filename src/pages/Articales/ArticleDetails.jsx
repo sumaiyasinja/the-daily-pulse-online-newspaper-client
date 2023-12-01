@@ -1,14 +1,33 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 import useAxiosPublic from './../../hooks/useAxiosPublic';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const ArticleDetails = () => {
-    const article = useLoaderData();
-    console.log(article);
+  const [article, setArticle] = useState([]);
+  const {id} = useParams()
+    const axiosPublic = useAxiosPublic();
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axiosPublic.get(`/articles/${id}`);
+          setArticle(response.data);
+        } catch (error) {
+          console.error("Error fetching article:", error);
+        }
+      };
+    
+      fetchData();
+      window.scrollTo(0, 0);
+
+    }, [axiosPublic, id]);
+    
   return (
-    <div className="max-w-screen-lg mx-auto">
+    <div className="max-w-screen-lg mx-auto"> 
       {/* main */}
       <main className="mt-10">
         <div className="mb-4 md:mb-0 w-full mx-auto relative">
+         
           <div className="px-4 lg:px-0">
             <h2 className="text-4xl font-semibold text-gray-800 leading-tight">
               {article?.title}
@@ -26,7 +45,13 @@ const ArticleDetails = () => {
             className="w-full"
           />
         </div>
-
+        <div className='text-gray-500'> 
+          <p>
+          Posted on :
+          <span> {article?.postedDate?.day}, </span>  
+         {article?.postedDate?.date}
+           <span> | </span>
+          {article?.postedDate?.time}</p></div>
         <div className="flex flex-col lg:flex-row lg:space-x-12">
           <div className="px-4 text-justify lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
 {article?.description}          </div>
@@ -60,6 +85,13 @@ const ArticleDetails = () => {
       <br />
       <br />
       <hr />
+      {/* <img src="https://i.ibb.co/kQgG3sN/ad-tea.jpg" alt="" /> */}
+      <Link to={'https://shop.shajgoj.com/product/meril-petroleum-jelly/'} target='_blank' className='w-full'> ad:
+      <img src="https://i.ibb.co/c2yYtHJ/ad.png" className='w-full' alt="" />
+
+      </Link>
+            <hr />
+
     </div>
   );
 };
