@@ -71,8 +71,8 @@ About Us
       <Toaster></Toaster>
       <div className="navbar bg-slate-800 text-white">
         <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <div className="dropdown absolute z-[60] ">
+            <label tabIndex={0} className="btn btn-ghost  lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -91,8 +91,8 @@ About Us
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content
-             mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52
-
+             mt-3 z-[1] p-2 shadow  text-center w-52
+              text-black bg-slate-300 rounded-lg
              "
             >
               {NavLinks}

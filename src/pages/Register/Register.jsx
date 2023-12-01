@@ -5,9 +5,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import useAuth from "./../../hooks/useAuth";
+import useAxiosPublic from './../../hooks/useAxiosPublic';
 
 const Register = () => {
   const { createUserWithEmail, loginWithGoogle } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const handleRegister = (e) => {
@@ -34,48 +36,81 @@ const Register = () => {
     }
 
     createUserWithEmail(email, password)
-      .then(() => {
-        toast.success("Registration Successful!");
-        // Update user profile here
-        updateProfile(auth.currentUser, {
-          displayName: name,
-          photoURL: photoURL,
-        })
-          .then(() => {
-            console.log("Profile data updated!");
-            navigate(location.state ? location.state : "/");
-          })
-          .catch((error) => {
-            toast.error(error.message);
-          });
+    .then(() => {
+      toast.success("Registration Successful!");
+      // Update user profile here
+      updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photoURL,
       })
-      .catch((error) => {
+        .then(() => {
+          console.log("Profile data updated!");
+  
+          const userInfo = {
+            name: name,
+            email: email,
+            photoURL: photoURL,
+          };
+          axiosPublic
+            .post('/users', userInfo)
+            .then((res) => {
+              if (res.data.insertedId) {
+                console.log('user added to the database');
+                form.reset();
+                toast.success("User added successfully to database");
+                navigate(location.state ? location.state : "/");
+              }
+            })
+            .catch((error) => {
+              toast.error(error.message);
+            });
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    })
+    .catch((error) => {
+      if (error.code === 'auth/email-already-in-use') {
+        toast.error('Email is already in use. Please choose a different email.');
+      } else {
         toast.error(error.message);
-      });
+      }
+    });
+  
   };
 
   const handleGoogleSignIn = () => {
     loginWithGoogle()
       .then(() => {
         toast.success("Succefully logged in with google.");
+
+        const user = auth.currentUser;
+
+      const userInfo = {
+        name: user?.displayName || 'Default Name',
+        email: user?.email || 'Default Email',
+        photoURL: user?.photoURL || 'none',
+      };
+      axiosPublic
+      .post('/users', userInfo)
+      .then((res) => {
+        if (res.data.insertedId) {
+          console.log('User added to the database');
+          toast.success('User added successfully to the database');
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
         navigate(location.state ? location.state : "/");
       })
       .catch((e) => toast.error(e.message));
     console.log("Signing in with Google");
   };
 
-  // Animation for the Register form
-  //  const formAnimation = useSpring({
-  //   opacity: 1,
-  //   from: { opacity: 0 },
-  //   config: { duration: 500 },
-  // });
-
+ 
   return (
-    //   <animated.section
-    //   style={formAnimation}
-    //   className="p-6 bg-gray-100 text-gray-800"
-    // >
+
     <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2  xl:grid-cols-5">
       <Toaster></Toaster>
       <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-3 bg-gray-50">

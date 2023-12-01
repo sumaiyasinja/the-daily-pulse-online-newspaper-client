@@ -3,10 +3,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { FaGoogle } from "react-icons/fa";
 import "../../css/GoogleSignInButton.css";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { auth } from "../../firebase/firebase.config";
+
 
 
 const Login = () => {
   const { loginWithEmailAndPasword, loginWithGoogle } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const handleLogin = (e) => {
@@ -28,9 +32,29 @@ const Login = () => {
     loginWithGoogle()
       .then(() => {
         toast.success("Succefully logged in with google.");
+
+        const user = auth.currentUser;
+
+      const userInfo = {
+        name: user?.displayName || 'no Name',
+        email: user?.email || 'no Email',
+        photoURL: user?.photoURL || 'null',
+      };
+      axiosPublic
+      .post('/users', userInfo)
+      .then((res) => {
+        if (res.data.insertedId) {
+          console.log('User added to the database');
+          toast.success('User added successfully to the database');
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
         navigate(location.state ? location.state : "/");
       })
       .catch((e) => toast.error(e.message));
+    console.log("Signing in with Google");
   };
   return (
     <section className="p-6 bg-gray-100 text-gray-800">
@@ -42,7 +66,7 @@ const Login = () => {
           <p className="my-8">
             <span className="font-medium text-gray-900">
               Join our community
-            </span>{" "}
+            </span>
             and get updated with all the latest news! Our platform is always in
             the top.
           </p>

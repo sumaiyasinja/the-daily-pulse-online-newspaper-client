@@ -36,7 +36,7 @@ import AboutUs from './../pages/AboutUs/AboutUs';
       {
         path: "/article/:id",
         element: <PrivateRoute><ArticleDetails /></PrivateRoute>,
-        // loader: ({ params }) => params,
+        loader: ({ params }) => fetch(`http://localhost:5000/articles/${params.id}`),
       },
      
       {
