@@ -13,6 +13,8 @@ import Dashboard from "../Layout/Dashboard";
 import MyArticles from "../pages/Articales/MyArticles";
 import ArticleDetails from './../pages/Articales/ArticleDetails';
 import AboutUs from './../pages/AboutUs/AboutUs';
+import AddPublisher from './../components/Publishers/AddPublisher';
+import AdminRoute from './AdminRoute';
 
 
  const router = createBrowserRouter([
@@ -66,6 +68,13 @@ import AboutUs from './../pages/AboutUs/AboutUs';
         path: "/profile",
         element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
       },
+
+          {
+            path: "/addPublisher",
+            element: <PrivateRoute><AdminRoute><AddPublisher /></AdminRoute></PrivateRoute>
+          },
+      
+      
     ],
   },
   ]);

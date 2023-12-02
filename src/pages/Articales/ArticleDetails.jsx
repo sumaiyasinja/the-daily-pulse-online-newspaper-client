@@ -66,7 +66,7 @@ const ArticleDetails = () => {
                 />
                 <div>
                   <p className="font-semibold text-gray-700 text-sm"> {article?.author?.name}</p>
-                  <p className="font-semibold text-gray-600 text-xs"> Editor </p>
+                  <p className="font-semibold text-gray-600 text-xs"> Author </p>
                 </div>
               </div>
               <p className="text-gray-700 py-3">

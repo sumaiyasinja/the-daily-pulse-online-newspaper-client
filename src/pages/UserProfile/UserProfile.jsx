@@ -37,8 +37,11 @@ const UserProfile = () => {
               .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
+                  history.back();
                   toast.success("Profile updated successfully");
                 } else {
+                  history.back();
+
                   toast.error("nothing to update");
                 }
               })
@@ -56,15 +59,15 @@ const UserProfile = () => {
   return (
     <div className="bg-inherit flex flex-col justify-center items-center">
       <Toaster></Toaster>
-      <p className="text-4xl font-semibold mb-4 text-teal-400">User Profile</p>
+      <p className="text-4xl font-semibold mb-4 text-gray-500">User Profile</p>
       <div
         className=" flex h-96 relative flex-col justify-center  p-6 shadow-md rounded-xl sm:px-12
          bg-gray-50 text-gray-800"
       >
         <img
-          src={user?.photoURL}
+          src={ user?.photoURL ? user?.photoURL : "https://i.ibb.co/s65Z563/CITYPNG-COM-Profile-User-Round-White-Icon-Symbol-PNG-1000x1000.png"} 
           alt="user image"
-          className="pt-4 w-40 h-40 mx-auto rounded-full bg-gray-500 aspect-square"
+          className="ring-2 mt-8 ring-gray-500 w-40 h-40 mx-auto rounded-full bg-gray-500 aspect-square"
         />
         <br />
         <hr />
@@ -133,7 +136,7 @@ const UserProfile = () => {
                 type="text"
                 id="photoURL"
                 name="photoURL"
-                defaultValue={user?.photoURL}
+                defaultValue={user?.photoURL} 
                 required
               />
               <br />
@@ -142,7 +145,7 @@ const UserProfile = () => {
               <input
                 className="py-2 rounded-lg w-full bg-teal-700 hover:bg-teal-600 text-white"
                 type="submit"
-                value="update"
+                value="Update"
               />
             </form>
           </div>

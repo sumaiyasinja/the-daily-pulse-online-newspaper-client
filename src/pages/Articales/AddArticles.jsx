@@ -3,32 +3,36 @@ import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import Select from "react-select";
 import useAuth from "./../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import usePublishers from './../../hooks/usePublishers';
 
 const AddArticles = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const [selectedTags, setSelectedTags] = useState([]);
+const [publishers] = usePublishers();
 
+  const handleTagChange = (selectedOptions) => {
+    setSelectedTags(selectedOptions);
+  };
   // upload img to imgbb
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-  const publisherOptions = [
-    { value: "nytimes", label: "The New York Times" },
-    { value: "thedailypulse", label: "The Daily Pulse" },
-    { value: "wired", label: "Wired" },
-  ];
+  // tag
   const tagOptions = [
-    { value: "free", label: "Free" },
-    { value: "premium", label: "Premium" },
     { value: "politics", label: "politics" },
     { value: "sports", label: "sports" },
     { value: "science", label: "science" },
     { value: "entertainment", label: "entertainment" },
-    { value: "health", label: "health" },
-    { value: "business", label: "business" },
     { value: "technology", label: "technology" },
     { value: "others", label: "others" },
   ];
+  let publisherOptions = [];
+
+  publishers.map((publisher) => {
+    publisherOptions.push({ value: publisher.name, label: publisher.name });
+  });
 
   const handleAddarticle = async (event) => {
     event.preventDefault();
@@ -48,9 +52,10 @@ const AddArticles = () => {
       const title = form.title.value;
       const description = form.description.value;
       const publisher = form.publisher?.value || "not specified";
-      const tags = form.tags?.value || "free";
-      const views = 0;
-      const status = "pending";
+      const tags = selectedTags.map(tag => tag.value); 
+   
+       const status = "pending";
+       const views = 0;
       const currentDate = new Date();
 
       const postedDate = {
@@ -192,13 +197,15 @@ const AddArticles = () => {
                 options={tagOptions}
                 isMulti
                 closeMenuOnSelect={false}
+                value={selectedTags}
+                onChange={handleTagChange}
               />
             </div>
           </div>
           <div className="flex justify-center items-center">
             <input
               type="submit"
-              className="font-medium mt-3 text-center bg-primary-700 custom-btn px-5 py-2.5 rounded-lg focus:ring-4"
+              className="font-medium mt-4 w-full  text-center bg-blue-950 text-white hover:bg-blue-900 text-base  px-5 py-2.5 rounded-lg focus:ring-4"
               value="Add article"
             />
           </div>

@@ -6,28 +6,17 @@ import { FcReadingEbook } from "react-icons/fc";
 import { MdEmojiEvents } from "react-icons/md";
 
 import CountUp from 'react-countup';
+import useUser from '../../hooks/useUser';
 
 const States = () => {
-  const [totalUsers, setTotalUsers] = useState(0);
-  const [normalUsers, setNormalUsers] = useState(0);
-  const [premiumUsers, setPremiumUsers] = useState(0);
+  const [users] = useUser()
+  console.log("users in state",users);
 
-  // Dummy data - Replace this with your actual data fetching logic
-  useEffect(() => {
-    // Simulating data fetching from an API
-    const fetchData = async () => {
-      // Replace these values with actual counts from your data source
-      const totalUsersCount = 1000;
-      const normalUsersCount = 800;
-      const premiumUsersCount = 200;
+  const totalUsers = users.length;
+  let premiumUsers = users.filter ((user) => user?.status === "premium").length;
+  let normalUsers = totalUsers - premiumUsers
 
-      setTotalUsers(totalUsersCount);
-      setNormalUsers(normalUsersCount);
-      setPremiumUsers(premiumUsersCount);
-    };
 
-    fetchData();
-  }, []);
 
   return (
     <div className="stats shadow flex justify-center items-center  text-center container mx-auto">

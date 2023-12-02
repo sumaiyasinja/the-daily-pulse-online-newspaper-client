@@ -7,9 +7,18 @@ import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation,  } from 'swiper/modules';
 import '../../css/sweeper.css';
+import useArticles from './../../hooks/useArticles';
 
 const Banner = () => {
-
+   const articles = useArticles();
+  // Step 1: Sort articles based on views in descending order
+  const sortedArticles = articles.sort((a, b) => b.views - a.views);
+  
+  // Step 2: Take the top six articles or all available articles if there are fewer than six
+  const topSixArticles = sortedArticles.slice(0, Math.min(sortedArticles.length, 6));
+  
+  // Now 'topSixArticles' contains the top six viewed articles or all available articles if less than six
+  console.log(topSixArticles);
 
   return (
     <div className="">
@@ -56,6 +65,7 @@ const Banner = () => {
             {/* ballon */}
 <img src="https://i.ibb.co/stGNRZ5/Shakib-2311261111.jpg" alt="" />       
  </SwiperSlide>
+ 
        </div>
       </Swiper>
     </div>
