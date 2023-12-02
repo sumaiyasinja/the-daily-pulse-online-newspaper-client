@@ -1,8 +1,9 @@
 import './Publisher.css';
 import useAxiosPublic from './../../hooks/useAxiosPublic';
 import toast, { Toaster } from 'react-hot-toast';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 const AddPublisher = () => {
-  const axiosPublic = useAxiosPublic()
+  const axiosSecure = useAxiosSecure()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,7 +13,7 @@ const AddPublisher = () => {
     const publisher = { name, photo };
     console.log(publisher);
 
-    axiosPublic.post('/publishers', publisher)
+    axiosSecure.post('/publishers', publisher)
     .then((res) => {
       if (res.data.insertedId) {
         form.reset();
