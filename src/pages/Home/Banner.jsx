@@ -7,13 +7,26 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import "../../css/sweeper.css";
+import useApprovedArticles from "../../hooks/useApprovedArticles";
 
 const Banner = () => {
-  
+  const [articles] = useApprovedArticles();
+  console.log("all aart", articles);
+
+  // Step 1: Sort articles based on views in descending order
+  const sortedArticles = articles.sort((a, b) => b.views - a.views);
+
+  // Step 2: Take the top six articles or all available articles if there are fewer than six
+  const topSixArticles = sortedArticles.slice(
+    0,
+    Math.min(sortedArticles.length, 6)
+  );
+
+  // Now 'topSixArticles' contains the top six viewed articles or all available articles if less than six
+  console.log("fil art", topSixArticles);
 
   return (
     <div className="">
-      <h2 className="text-3xl font-bold text-center py-3">Trending News</h2>
       <Swiper
         slidesPerView={2}
         loop={true}
@@ -31,46 +44,38 @@ const Banner = () => {
         modules={[Autoplay, Navigation]}
         className="mySwiper"
       >
+        <h2 className="text-3xl font-bold text-center py-3">Trending News</h2>
         <div className="flex justify-center items-center">
-          <SwiperSlide className="custom-slide">
-            <img
-              src="https://www.livemint.com/lm-img/img/2023/11/12/600x338/BRITAIN-PALESTINIA_1699714834169_1699758783040.jpg"
-              alt=""
-            />
-          </SwiperSlide>
-          <SwiperSlide className="custom-slide">
-            {/* <img src="https://i.ibb.co/G3vMwRG/sam.webp" alt="" /> */}
-            <img
-              src="https://media.licdn.com/dms/image/D4D12AQEOGyK-qKkTQw/article-cover_image-shrink_720_1280/0/1700663816278?e=2147483647&v=beta&t=OYla3bDhiYrlXuLieZJLxsRJQBE7yN3rhXu6wLmGgS4"
-              alt=""
-            />
-          </SwiperSlide>
-
-          <SwiperSlide className="custom-slide">
-            <img
-              src="https://img1.hscicdn.com/image/upload/f_auto,t_ds_w_1200/lsci/db/PICTURES/CMS/371700/371745.jpg"
-              alt=""
-            />
-            {/* <img src="https://hindi.insidesport.in/wp-content/uploads/2023/03/WhatsApp-Image-2023-03-24-at-19.34.33.webp?w=690" alt="" /> */}
-          </SwiperSlide>
-          <SwiperSlide className="custom-slide">
-            {/* station */}
-            <img
-              src="https://www.tbsnews.net/sites/default/files/styles/infograph/public/images/2023/11/06/01_view_32_1_0.jpg"
-              alt=""
-            />
-          </SwiperSlide>
-          <SwiperSlide className="custom-slide">
-            {/* ballon */}
-            <img
-              src="https://ghanaeducation.org/wp-content/uploads/2023/05/maxresdefault-3-1.jpg"
-              alt=""
-            />
-          </SwiperSlide>
-          <SwiperSlide className="custom-slide">
-            {/* ballon */}
-            <img src="https://i.ibb.co/stGNRZ5/Shakib-2311261111.jpg" alt="" />
-          </SwiperSlide>
+          {topSixArticles?.map((article) => {
+            <SwiperSlide key={article._id} className="custom-slide">
+              <div className="relative">
+                <img
+                  src={article?.image}
+                  className="absolute inset-0 object-cover w-full h-full"
+                  alt=""
+                />
+                <div>
+                  <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+                    {article?.title}
+                  </h2>
+                  <a
+                    href={`/view-deatials/${article?._id}`}
+                    aria-label=""
+                    className="inline-flex text-white items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700"
+                  >
+                    Read more
+                    <svg
+                      className="inline-block w-3 ml-2"
+                      fill="currentColor"
+                      viewBox="0 0 12 12"
+                    >
+                      <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </SwiperSlide>;
+          })}
         </div>
       </Swiper>
     </div>

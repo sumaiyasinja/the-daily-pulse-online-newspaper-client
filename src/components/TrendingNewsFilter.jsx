@@ -2,6 +2,7 @@ import useApprovedArticles from '../hooks/useApprovedArticles';
 
 const TrendingNewsFilter = () => {
     const articles = useApprovedArticles();
+    console.log(articles);
   // Step 1: Sort articles based on views in descending order
   const sortedArticles = articles.sort((a, b) => b.views - a.views);
 
