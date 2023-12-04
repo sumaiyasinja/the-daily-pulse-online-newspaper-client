@@ -1,21 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import BreakingNews from "../BreakingNews/BreakingNews";
 import useAuth from "../../hooks/useAuth";
-import toast, {  Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const handleLogOut =()=>{        
+  const handleLogOut = () => {
     logOut()
-    .then (()=> {
-        toast.success("logged out successfully.")
-    })
-    .catch(error => {
-        console.log('failed logging out')
+      .then(() => {
+        toast.success("logged out successfully.");
+      })
+      .catch((error) => {
+        console.log("failed logging out");
 
-        toast.error("error occured while doing logout", error.message)})
-}
-
+        toast.error("error occured while doing logout", error.message);
+      });
+  };
 
   const NavLinks = (
     <>
@@ -28,42 +28,38 @@ const Navbar = () => {
       >
         All Articles
       </NavLink>
-      <NavLink
-        className="hover:bg-blue-400 px-2 py-1 rounded"
-        to="/aboutUs"
-      >
-About Us     
- </NavLink>
-      {
-        user ? 
+      <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/aboutUs">
+        About Us
+      </NavLink>
+      {user ? (
         <>
-        <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
-        Premium Articles
-      </NavLink>
-        <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
-        Subscription
-      </NavLink>
-      
-      <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/addArticle">
-        Add Articles
-      </NavLink>
-      <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
-        My Articles
-      </NavLink>
-      <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
-        Dashboard(admin)
-      </NavLink>
-      
+          <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/premiumArticles">
+            Premium Articles
+          </NavLink>
+          <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
+            Subscription
+          </NavLink>
+
+          <NavLink
+            className="hover:bg-blue-400 px-2 py-1 rounded"
+            to="/addArticle"
+          >
+            Add Articles
+          </NavLink>
+          <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/myArticles">
+            My Articles
+          </NavLink>
+          <NavLink
+            className="hover:bg-blue-400 px-2 py-1 rounded"
+            to="/dashboard"
+          >
+            Dashboard
+          </NavLink>
         </>
-        : <></>
-      }
-      
-      
-      
-     
-     
+      ) : (
+        <></>
+      )}
     </>
-    
   );
 
   return (
@@ -106,35 +102,44 @@ About Us
         </div>
         <div className="navbar-end">
           {user ? (
-
             <>
-            
-           <button onClick={handleLogOut} className="hover:bg-gray-400 px-2 py-1 rounded mr-2" to="/">
+              <button
+                onClick={handleLogOut}
+                className="hover:bg-gray-400 px-2 py-1 rounded mr-2"
+                to="/"
+              >
                 logout
-            </button>
-            <Link to="/profile" className="avatar online">
-              <div className="w-9 ring ring-green-600 rounded-full">
-                {user.photoURL ? 
-                <img src={user?.photoURL} alt="" />:
-                <img src="https://i.ibb.co/s65Z563/CITYPNG-COM-Profile-User-Round-White-Icon-Symbol-PNG-1000x1000.png" className="" />}
-              </div>
-              
-            </Link>
-            
+              </button>
+              <Link to="/profile" className="avatar online">
+                <div className="w-9 ring ring-green-600 rounded-full">
+                  {user.photoURL ? (
+                    <img src={user?.photoURL} alt="" />
+                  ) : (
+                    <img
+                      src="https://i.ibb.co/s65Z563/CITYPNG-COM-Profile-User-Round-White-Icon-Symbol-PNG-1000x1000.png"
+                      className=""
+                    />
+                  )}
+                </div>
+              </Link>
             </>
           ) : (
             <>
-             <NavLink className="hover:bg-gray-400 px-2 py-1 rounded mr-2" to="/login">
-              Login
-            </NavLink>
-             <NavLink className="hover:bg-gray-400 px-2 py-1 rounded mr-2" to="/register">
-              Register
-            </NavLink>
-            
+              <NavLink
+                className="hover:bg-gray-400 px-2 py-1 rounded mr-2"
+                to="/login"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                className="hover:bg-gray-400 px-2 py-1 rounded mr-2"
+                to="/register"
+              >
+                Register
+              </NavLink>
             </>
           )}
         </div>
-        
       </div>
       {/* todo : future word if dropdowen menu needed */}
       {/* {   user && dropdown ?
@@ -145,8 +150,7 @@ About Us
         </ul>
       :<></>
       }     */}
- <BreakingNews></BreakingNews>
-
+      <BreakingNews></BreakingNews>
     </div>
   );
 };

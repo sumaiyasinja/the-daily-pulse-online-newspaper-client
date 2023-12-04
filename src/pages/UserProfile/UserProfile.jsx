@@ -31,16 +31,14 @@ const UserProfile = () => {
             console.log("updatedUser", updatedUser);
       
             axiosPublic
-              .put(`/users/update/${user.email}`, updatedUser
+              .put(`/users/update/${email}`, updatedUser
         // 
               )
               .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
-                  history.back();
                   toast.success("Profile updated successfully");
                 } else {
-                  history.back();
 
                   toast.error("nothing to update");
                 }

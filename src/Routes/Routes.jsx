@@ -15,6 +15,12 @@ import ArticleDetails from './../pages/Articales/ArticleDetails';
 import AboutUs from './../pages/AboutUs/AboutUs';
 import AddPublisher from './../components/Publishers/AddPublisher';
 import AdminRoute from './AdminRoute';
+import TrendingNewsFilter from './../components/TrendingNewsFilter';
+import ManageUsers from "../pages/AdminDashboard/ManageUsers";
+import ManageAricles from "../pages/AdminDashboard/ManageAricles";
+import DashboardHome from "../pages/AdminDashboard/DashboardHome";
+import PremiumArticles from "../pages/Articales/PremiumArticles";
+import UpdateArticle from "../pages/Articales/UpdateArticle";
 
 
  const router = createBrowserRouter([
@@ -56,26 +62,55 @@ import AdminRoute from './AdminRoute';
         path: "/subscription",
         element: <PrivateRoute><Subscription></Subscription></PrivateRoute>
       },
+      
       {
-        path: "/dashboard",
-        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+        path: "/myArticles",
+        element: <PrivateRoute><MyArticles></MyArticles></PrivateRoute>
       },
       {
-        path: "/myArticles,",
-        element: <PrivateRoute><MyArticles></MyArticles></PrivateRoute>
+        path: "/UpdateArticle/:id",
+        element: <PrivateRoute><UpdateArticle></UpdateArticle></PrivateRoute>
       },
       {
         path: "/profile",
         element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
       },
-
-          {
-            path: "/addPublisher",
-            element: <PrivateRoute><AdminRoute><AddPublisher /></AdminRoute></PrivateRoute>
-          },
-      
+      {
+        path: "/trendingNews",
+        element: <PrivateRoute><TrendingNewsFilter></TrendingNewsFilter></PrivateRoute>
+      },   
+      {
+        path: "/premiumArticles",
+        element: <PrivateRoute><PremiumArticles></PremiumArticles></PrivateRoute>
+      },   
       
     ],
   },
+      {
+        path: "/dashboard",
+        element: <PrivateRoute><AdminRoute><Dashboard /></AdminRoute></PrivateRoute>,
+      children: [
+        // normal user routes
+        {
+          path: "/dashboard/home",
+          element: <PrivateRoute><AdminRoute><DashboardHome /></AdminRoute></PrivateRoute>
+        },
+        {
+          path: "/dashboard/addPublisher",
+          element: <PrivateRoute><AdminRoute><AddPublisher /></AdminRoute></PrivateRoute>
+        },
+
+        {
+          path: '/dashboard/manageUsers',
+          element: <PrivateRoute><AdminRoute><ManageUsers></ManageUsers></AdminRoute></PrivateRoute>
+        },
+        {
+          path: '/dashboard/manageAricles',
+          element: <PrivateRoute><AdminRoute><ManageAricles></ManageAricles></AdminRoute></PrivateRoute>
+        }
+
+      ]
+    }
+  
   ]);
   export default router;

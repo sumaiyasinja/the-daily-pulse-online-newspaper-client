@@ -1,5 +1,4 @@
 import './Publisher.css';
-import useAxiosPublic from './../../hooks/useAxiosPublic';
 import toast, { Toaster } from 'react-hot-toast';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 const AddPublisher = () => {

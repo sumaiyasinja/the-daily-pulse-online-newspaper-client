@@ -54,7 +54,8 @@ const [publishers] = usePublishers();
       const publisher = form.publisher?.value || "not specified";
       const tags = selectedTags.map(tag => tag.value); 
    
-       const status = "pending";
+       const status = "pending"; // pending, approved, declined todo
+       const isPremium = "false"; // true, false todo
        const views = 0;
       const currentDate = new Date();
 
@@ -82,12 +83,13 @@ const [publishers] = usePublishers();
         title,
         image: imageUrl,
         description,
-        tags,
+        postedDate,
         publisher,
         author,
+        tags,
         views,
         status,
-        postedDate,
+        isPremium,
       };
 
       // console.log(newArticle);

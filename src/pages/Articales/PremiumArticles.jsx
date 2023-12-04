@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import useApprovedArticles from "../../hooks/useApprovedArticles";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import usePremiumArticles from "../../hooks/usePremiumArticles";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { FaSearch } from "react-icons/fa";
 
-const AllArticles = () => {
-  const [articles] = useApprovedArticles();
+const PremiumArticles = () => {
+  const [articles] = usePremiumArticles();
   const [searchValue, setSearchValue] = useState("");
   const [filteredArticles, setFilteredArticles] = useState([]);
-  const axiosPublic = useAxiosPublic();
+
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   useEffect(() => {
     const filtered = articles.filter((article) =>
@@ -27,7 +30,7 @@ const AllArticles = () => {
   const handleViewDetails = (article) => {
     navigate(`/article/${article._id}`);
 
-    axiosPublic
+    axiosSecure
       .put(`/articles/${article._id}`, {
         views: parseInt(article?.views || 0) + 1,
       })
@@ -42,26 +45,28 @@ const AllArticles = () => {
       });
   };
   return (
-    <div>
+    <div >
       <div className="px-4 py-1 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className=" border-t border-b divide-y">
-          {/* todo: filer tag,publisher add */}
-          <div className="flex justify-end">
+          <div className="flex items-center gap-3 justify-end">
+            <p className="text-base"> <FaSearch></FaSearch> Filter:
+</p>
             <input
               type="text"
               name="text"
               className="input"
               required
-              placeholder="Search by name"
+              placeholder="Search by name "
               onChange={(e) => setSearchValue(e.target.value)}
               value={searchValue}
             />
           </div>
-
+        <h3 className="text-center text-3xl text-amber-400">Premium Articles</h3>
+            {/* todo card bg */}
           {filteredArticles?.map((article) => (
-            <div key={article._id} className="grid py-7 sm:grid-cols-4">
+            <div key={article._id} className="grid py-7 bg-violet-400 sm:grid-cols-4">
               <div className="sm:col-span-1">
-                <p className="text-blue-600 capitalize">
+                <p className="text-teal-700 capitalize">
                   {Array.isArray(article?.tags)
                     ? article.tags.map((tag, index) => (
                         <span className="mr-2 " key={index}>
@@ -114,4 +119,4 @@ const AllArticles = () => {
   );
 };
 
-export default AllArticles;
+export default PremiumArticles;

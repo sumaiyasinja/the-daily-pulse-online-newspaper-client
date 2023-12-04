@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
-const useArticles = () => {
+const usePremiumArticles = () => {
     const axiosSecure = useAxiosSecure();
   const {
     data: articles = [],
@@ -9,7 +9,7 @@ const useArticles = () => {
   } = useQuery({
     queryKey: ["articles"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/articles");
+      const res = await axiosSecure.get("/premium-articles");
       return res.data;
     },
   });
@@ -17,4 +17,4 @@ const useArticles = () => {
   return [articles, loading, refetch];
 };
 
-export default useArticles;
+export default usePremiumArticles;
