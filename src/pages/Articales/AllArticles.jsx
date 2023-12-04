@@ -7,28 +7,42 @@ import toast from "react-hot-toast";
 const AllArticles = () => {
   const [articles] = useApprovedArticles();
   const [searchValue, setSearchValue] = useState("");
-  const [filteredArticles, setFilteredArticles] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState(articles);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
-  useEffect(() => {
-    const filtered = articles.filter((article) =>
-      article?.title.toLowerCase().includes(searchValue.toLowerCase())
+
+  const filterArticles = (search) => {
+    const lowerCaseSearch = search.toLowerCase();
+    return articles.filter(
+      (article) =>
+        article.title.toLowerCase().includes(lowerCaseSearch) ||
+        article.description.toLowerCase().includes(lowerCaseSearch)
     );
-    setFilteredArticles(filtered);
-  }, [searchValue, articles]);
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    setFilteredArticles(filterArticles(value));
+  };
+
+  
+
+  useEffect(() => {
+    setFilteredArticles(articles);
+  }, [articles]);
   const truncateDescription = (description, maxLength) => {
     if (description.length > maxLength) {
       return description.substring(0, maxLength) + "...";
     }
     return description;
   };
-  console.log("articles", articles);
 
   const handleViewDetails = (article) => {
-    navigate(`/article/${article._id}`);
+    navigate(`/view-deatials/${article._id}`);
 
     axiosPublic
-      .put(`/articles/${article._id}`, {
+      .put(`/articles/update-views${article._id}`, {
         views: parseInt(article?.views || 0) + 1,
       })
       .then((res) => {
@@ -53,12 +67,11 @@ const AllArticles = () => {
               className="input"
               required
               placeholder="Search by name"
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={handleSearchChange}
               value={searchValue}
             />
           </div>
-
-          {filteredArticles?.map((article) => (
+          {/* {filteredArticles.map((article) => (
             <div key={article._id} className="grid py-7 sm:grid-cols-4">
               <div className="sm:col-span-1">
                 <p className="text-blue-600 capitalize">
@@ -107,7 +120,7 @@ const AllArticles = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

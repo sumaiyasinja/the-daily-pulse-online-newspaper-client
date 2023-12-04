@@ -2,26 +2,27 @@ import { Link, useParams } from 'react-router-dom';
 import useAxiosPublic from './../../hooks/useAxiosPublic';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import useAxiosSecure from './../../hooks/useAxiosSecure';
 
 const ArticleDetails = () => {
   const [article, setArticle] = useState([]);
   const {id} = useParams()
-    const axiosPublic = useAxiosPublic();
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axiosPublic.get(`/articles/${id}`);
-          setArticle(response.data);
-        } catch (error) {
-          console.error("Error fetching article:", error);
-        }
-      };
-    
-      fetchData();
-      window.scrollTo(0, 0);
+  console.log(id);
+    const axiosSecure = useAxiosSecure();
 
-    }, [axiosPublic, id]);
-    
+     useEffect(() => {
+       axiosSecure
+         .get(`/article-deatials/${id}`)
+         .then((res) => {
+           console.log(res.data);
+           setArticle(res.data);
+         })
+         .catch((err) => {
+           console.log(err);
+         });
+     }, [axiosSecure,id]);
+         
+    // console.log(article);
   return (
     <div className="max-w-screen-lg mx-auto"> 
       {/* main */}

@@ -1,9 +1,9 @@
-import React from 'react';
+import Payment from './Payment/Payment';
 
 const Subscription = () => {
     return (
         <div>
-            sub
+           <Payment></Payment>
         </div>
     );
 };

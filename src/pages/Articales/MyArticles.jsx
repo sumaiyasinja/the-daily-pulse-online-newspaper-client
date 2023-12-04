@@ -8,7 +8,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
 
 const MyArticles = () => {
-    const [articles, loading, refetch] = useMyArticles();
+    const [articles, refetch] = useMyArticles();
     const axiosSecure = useAxiosSecure();
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedArticleId, setSelectedArticleId] = useState(null);
@@ -66,7 +66,13 @@ const MyArticles = () => {
                 <th className="text-left py-3 px-2 ">Update</th>
                 <th className="text-left py-3 px-2 rounded-r-lg">Delete</th>
               </thead>
-              {currentPageArticles.map((article, index) => (
+              { currentPageArticles.length === 0 ? (
+                <div className='w-full flex justify-center items-center'>
+
+                  <p className="py-3 px-7 text-center text-xl">No articles found</p>
+                </div>
+              ):
+              currentPageArticles.map((article, index) => (
                 <tr key={article._id} className="border-b border-gray-700">
                     <td>{index +1}</td>
                   <td className="py-3 px-2 font-bold">

@@ -1,20 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import BreakingNews from "../BreakingNews/BreakingNews";
 import useAuth from "../../hooks/useAuth";
-import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const handleLogOut = () => {
     logOut()
-      .then(() => {
-        toast.success("logged out successfully.");
-      })
-      .catch((error) => {
-        console.log("failed logging out");
-
-        toast.error("error occured while doing logout", error.message);
-      });
+     
   };
 
   const NavLinks = (
@@ -36,7 +28,7 @@ const Navbar = () => {
           <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/premiumArticles">
             Premium Articles
           </NavLink>
-          <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/">
+          <NavLink className="hover:bg-blue-400 px-2 py-1 rounded" to="/subscription">
             Subscription
           </NavLink>
 
@@ -64,7 +56,6 @@ const Navbar = () => {
 
   return (
     <div className=" z-50">
-      <Toaster></Toaster>
       <div className="navbar bg-slate-800 text-white">
         <div className="navbar-start">
           <div className="dropdown absolute z-[60] ">
@@ -141,7 +132,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {/* todo : future word if dropdowen menu needed */}
+      {/* todo : future work if dropdowen menu needed */}
       {/* {   user && dropdown ?
        
         <ul className="absolute z-[60] right-2 menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52">

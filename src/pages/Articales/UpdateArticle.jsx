@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast, { Toaster } from "react-hot-toast";
@@ -23,7 +23,6 @@ const UpdateArticle = () => {
     { value: "others", label: "others" },
   ];
 
-  
   const article = articles.find((art) => art._id === id);
   const handleTagChange = (selectedOptions) => {
     setSelectedTags(selectedOptions);
@@ -36,26 +35,24 @@ const UpdateArticle = () => {
 
     // Extract updated article details
     const updatedArticle = {
-      title: form.title.value || article?.title,
-      description: form.description.value || article?.description,
-      image: form.image.value || article?.image,
-      publisher: form.publisher?.value || article?.publisher,
+      title: form?.title?.value || article?.title,
+      description: form?.description?.value || article?.description,
+      image: form?.image?.value || article?.image,
+      publisher: form?.publisher?.value || article?.publisher,
       tags: selectedTags.map((tag) => tag.value),
     };
-
-      // Update the article
-      axiosSecure.put(`/articles/${id}`, updatedArticle)
-      .then((res) => {
+    console.log(updatedArticle);
+    // Update the article
+    axiosSecure.put(`/articles/${id}`, updatedArticle).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
         console.log(res.data);
-        if (res.data.modifiedCount > 0) {
-          console.log("Article updated successfully");
-          toast.success("Article updated successfully");
-        } else {
-          toast.error("Error updating article");
-        }
-      })
-
-     
+        toast.success("Article updated successfully");
+        history.back();
+      } else {
+        toast.error("Error updating article");
+      }
+    });
   };
 
   return (
@@ -68,7 +65,7 @@ const UpdateArticle = () => {
         <h2 className="mb-4 text-4xl text-slate-800 font-bold dark:text-white py-2">
           Update Article
         </h2>
-        
+
         <form onSubmit={handleUpdateArticle}>
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="sm:col-span-2">
