@@ -11,8 +11,7 @@ const ArticleDetails = () => {
     const axiosSecure = useAxiosSecure();
 
      useEffect(() => {
-       axiosSecure
-         .get(`/article-deatials/${id}`)
+       axiosSecure.get(`/article-deatials/${id}`)
          .then((res) => {
            console.log(res.data);
            setArticle(res.data);
@@ -26,19 +25,22 @@ const ArticleDetails = () => {
   return (
     <div className="max-w-screen-lg mx-auto"> 
       {/* main */}
-      <main className="mt-10">
+      <main className={`mt-10 ${article?.isPremium && "rounded border shadow-md border-purple-400-200 px-5 py-3"}`}>
         <div className="mb-4 md:mb-0 w-full mx-auto relative">
          
           <div className="px-4 lg:px-0">
             <h2 className="text-4xl font-semibold text-gray-800 leading-tight">
               {article?.title}
             </h2>
+            
+            
             <a
               href="#"
               className="py-2 text-blue-700 inline-flex items-center justify-center text-base font-semibold  mb-2"
-            >
+              >
               {article?.tags}
             </a>
+              <p className='text-gray-600'>isPremium: {article?.isPremium}</p>
           </div>
           <img
             src={article?.image} 
@@ -87,10 +89,13 @@ const ArticleDetails = () => {
       <br />
       <hr />
       {/* <img src="https://i.ibb.co/kQgG3sN/ad-tea.jpg" alt="" /> */}
+      {article?.isPremium ? <p className='text-center'>ad free service in premium article</p>:
+      
       <Link to={'https://shop.shajgoj.com/product/meril-petroleum-jelly/'} target='_blank' className='w-full'> ad:
       <img src="https://i.ibb.co/c2yYtHJ/ad.png" className='w-full' alt="" />
 
       </Link>
+      }
             <hr />
 
     </div>

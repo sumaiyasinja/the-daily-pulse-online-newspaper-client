@@ -6,45 +6,24 @@ import toast from "react-hot-toast";
 
 const AllArticles = () => {
   const [articles] = useApprovedArticles();
-  const [searchValue, setSearchValue] = useState("");
-  const [filteredArticles, setFilteredArticles] = useState(articles);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const filterArticles = (search) => {
-    const lowerCaseSearch = search.toLowerCase();
-    return articles.filter(
-      (article) =>
-        article.title.toLowerCase().includes(lowerCaseSearch) ||
-        article.description.toLowerCase().includes(lowerCaseSearch)
-    );
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearchValue(value);
-    setFilteredArticles(filterArticles(value));
-  };
-
-  
-
-  useEffect(() => {
-    setFilteredArticles(articles);
-  }, [articles]);
-  const truncateDescription = (description, maxLength) => {
-    if (description.length > maxLength) {
-      return description.substring(0, maxLength) + "...";
-    }
-    return description;
-  };
+  const filteredArticles = articles?.filter((article) => {
+    return article?.title?.toLowerCase().includes(searchTerm?.toLowerCase());
+  });
 
   const handleViewDetails = (article) => {
-    navigate(`/view-deatials/${article._id}`);
+    navigate(`/view-deatials/${article?._id}`);
 
     axiosPublic
-      .put(`/articles/update-views${article._id}`, {
-        views: parseInt(article?.views || 0) + 1,
-      })
+      .put(`/articles/update-views/${article?._id}`)
+
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
@@ -67,11 +46,10 @@ const AllArticles = () => {
               className="input"
               required
               placeholder="Search by name"
-              onChange={handleSearchChange}
-              value={searchValue}
+              onChange={handleSearchInputChange}
             />
           </div>
-          {/* {filteredArticles.map((article) => (
+          {filteredArticles.map((article) => (
             <div key={article._id} className="grid py-7 sm:grid-cols-4">
               <div className="sm:col-span-1">
                 <p className="text-blue-600 capitalize">
@@ -96,13 +74,16 @@ const AllArticles = () => {
               <div className="sm:col-span-3 lg:col-span-2">
                 <div className="mb-3">
                   <div className="inline-block text-black transition-colors duration-200 hover:text-deep-purple-accent-700">
-                    <p className="text-2xl font-extrabold leading-none sm:text-xl md:text-3xl">
+                    <p className="text-2xl font-extrabold leading-none sm:text-xl md:text-2xl">
                       {article?.title}
                     </p>
                   </div>
                 </div>
                 <p className="text-gray-600 text-justify text-base">
-                  {truncateDescription(article?.description, 150)}
+                  {/* {article?.description} */}
+                  {article?.description.length > 150
+                    ? article?.description?.substr(0, 150)
+                    : article?.description}
                 </p>
 
                 <div
@@ -120,7 +101,7 @@ const AllArticles = () => {
                 </div>
               </div>
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@ import ManageAricles from "../pages/AdminDashboard/ManageAricles";
 import DashboardHome from "../pages/AdminDashboard/DashboardHome";
 import PremiumArticles from "../pages/Articales/PremiumArticles";
 import UpdateArticle from "../pages/Articales/UpdateArticle";
+import PaymentHistory from './../pages/Subscription/Payment/PaymentHistory';
 
 
  const router = createBrowserRouter([
@@ -42,7 +43,7 @@ import UpdateArticle from "../pages/Articales/UpdateArticle";
         element: <AllArticles />,
       },
       {
-        path: "/article/:id",
+        path: "/view-deatials/:id",
         element: <PrivateRoute><ArticleDetails /></PrivateRoute>,
       },
      
@@ -82,6 +83,10 @@ import UpdateArticle from "../pages/Articales/UpdateArticle";
       {
         path: "/premiumArticles",
         element: <PrivateRoute><PremiumArticles></PremiumArticles></PrivateRoute>
+      },   
+      {
+        path: "/paymentHistory",
+        element: <PrivateRoute><PaymentHistory/></PrivateRoute>
       },   
       
     ],

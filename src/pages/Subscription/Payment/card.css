@@ -1,0 +1,33 @@
+.custom-card-element {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease-in-out;
+    font-size: 16px;
+    color: #424770;
+    height: 50px;
+  
+    &::placeholder {
+      color: #aab7c4;
+    }
+  
+    &:focus {
+      border-color: #80bdff;
+    }
+  
+    &.StripeElement--invalid {
+      border-color: #e74c3c;
+      color: #9e2146;
+    }
+  }
+  
+  .card-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  

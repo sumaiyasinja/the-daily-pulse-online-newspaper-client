@@ -10,7 +10,7 @@ const useApprovedArticles = () => {
   } = useQuery({
     queryKey: ["articles"],
     queryFn: async () => {
-      const res = await axiosPublic.get("articles-approved");
+      const res = await axiosPublic.get("/articles-approved");
       return res.data;
     },
   });

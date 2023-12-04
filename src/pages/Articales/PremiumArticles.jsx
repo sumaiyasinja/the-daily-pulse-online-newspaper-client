@@ -1,39 +1,29 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
-import usePremiumArticles from "../../hooks/usePremiumArticles";
+import usePremiumArticles from './../../hooks/usePremiumArticles';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { FaSearch } from "react-icons/fa";
 
 const PremiumArticles = () => {
   const [articles] = usePremiumArticles();
-  const [searchValue, setSearchValue] = useState("");
-  const [filteredArticles, setFilteredArticles] = useState([]);
-
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosSecure();
   const navigate = useNavigate();
-  useEffect(() => {
-    const filtered = articles.filter((article) =>
-      article?.title.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    setFilteredArticles(filtered);
-  }, [searchValue, articles]);
-  const truncateDescription = (description, maxLength) => {
-    if (description.length > maxLength) {
-      return description.substring(0, maxLength) + "...";
-    }
-    return description;
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
   };
-  console.log("articles", articles);
+
+  const filteredArticles = articles?.filter((article) => {
+    return article?.title?.toLowerCase().includes(searchTerm?.toLowerCase());
+  });
 
   const handleViewDetails = (article) => {
-    navigate(`/article/${article._id}`);
+    navigate(`/view-deatials/${article?._id}`);
 
-    axiosSecure
-      .put(`/articles/${article._id}`, {
-        views: parseInt(article?.views || 0) + 1,
-      })
+    axiosPublic
+      .put(`/articles/update-views/${article?._id}`)
+
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
@@ -46,27 +36,23 @@ const PremiumArticles = () => {
   };
   return (
     <div >
-      <div className="px-4 py-1 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <div className="px-4 bg-fuchsia-100 rounded my-3 py-1 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className=" border-t border-b divide-y">
-          <div className="flex items-center gap-3 justify-end">
-            <p className="text-base"> <FaSearch></FaSearch> Filter:
-</p>
+          <h2 className="Font-bold text-fuchsia-500">Premium Articles</h2>
+          <div className="flex justify-end">
             <input
               type="text"
               name="text"
               className="input"
               required
-              placeholder="Search by name "
-              onChange={(e) => setSearchValue(e.target.value)}
-              value={searchValue}
+              placeholder="Search by name"
+              onChange={handleSearchInputChange}
             />
           </div>
-        <h3 className="text-center text-3xl text-amber-400">Premium Articles</h3>
-            {/* todo card bg */}
-          {filteredArticles?.map((article) => (
-            <div key={article._id} className="grid py-7 bg-violet-400 sm:grid-cols-4">
+          {filteredArticles.map((article) => (
+            <div key={article._id} className="grid py-7 sm:grid-cols-4">
               <div className="sm:col-span-1">
-                <p className="text-teal-700 capitalize">
+                <p className="text-blue-600 capitalize">
                   {Array.isArray(article?.tags)
                     ? article.tags.map((tag, index) => (
                         <span className="mr-2 " key={index}>
@@ -88,13 +74,16 @@ const PremiumArticles = () => {
               <div className="sm:col-span-3 lg:col-span-2">
                 <div className="mb-3">
                   <div className="inline-block text-black transition-colors duration-200 hover:text-deep-purple-accent-700">
-                    <p className="text-2xl font-extrabold leading-none sm:text-xl md:text-3xl">
+                    <p className="text-2xl font-extrabold text-fuchsia-500 leading-none sm:text-xl md:text-2xl">
                       {article?.title}
                     </p>
                   </div>
                 </div>
                 <p className="text-gray-600 text-justify text-base">
-                  {truncateDescription(article?.description, 150)}
+                  {/* {article?.description} */}
+                  {article?.description.length > 150
+                    ? article?.description?.substr(0, 150)
+                    : article?.description}
                 </p>
 
                 <div
