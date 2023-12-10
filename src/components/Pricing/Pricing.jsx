@@ -1,7 +1,8 @@
 
+import { Link } from 'react-router-dom';
 const Pricing = () => {
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <Link to={"/subscription"} className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
       <div>
         <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
@@ -47,9 +48,9 @@ const Pricing = () => {
             <div className="mr-1 text-5xl font-bold">Free</div>
           </div>
           <div className="mt-2 space-y-3">
-            <div className="text-gray-700">10 deploys per day</div>
-            <div className="text-gray-700">10 GB of storage</div>
-            <div className="text-gray-700">20 domains</div>
+            <div className="text-gray-700">Duration 1 </div>
+            <div className="text-gray-700">Trial </div>
+            <div className="text-gray-700">No Support</div>
           </div>
         </div>
         <div>
@@ -75,13 +76,14 @@ const Pricing = () => {
         <div className="text-center">
           <div className="text-lg font-semibold">Pro</div>
           <div className="flex items-center justify-center mt-2">
-            <div className="mr-1 text-5xl font-bold">$38</div>
-            <div className="text-gray-700">/ mo</div>
+            <div className="mr-1 text-5xl font-bold">$10</div>
+            <div className="text-gray-700">/ 5days</div>
           </div>
           <div className="mt-2 space-y-3">
-            <div className="text-gray-700">200 deploys per day</div>
-            <div className="text-gray-700">80 GB of storage</div>
-            <div className="text-gray-700">Global CDN</div>
+            <div className="text-gray-700">Duration 5 days</div>
+            <div className="text-gray-700">Acess All Features</div>
+            <div className="text-gray-700">24/7 Support</div>
+      
           </div>
         </div>
         <div>
@@ -100,12 +102,12 @@ const Pricing = () => {
         <div className="text-center">
           <div className="text-lg font-semibold">Platinum</div>
           <div className="flex items-center justify-center mt-2">
-            <div className="mr-1 text-5xl font-bold">$78</div>
-            <div className="text-gray-700">/ mo</div>
+            <div className="mr-1 text-5xl font-bold">$20</div>
+            <div className="text-gray-700">/ 10days</div>
           </div>
           <div className="mt-2 space-y-3">
-            <div className="text-gray-700">500 GB of storage</div>
-            <div className="text-gray-700">Unlimited domains</div>
+            <div className="text-gray-700">Duration 10 days</div>
+            <div className="text-gray-700">Acess All Features</div>
             <div className="text-gray-700">24/7 Support</div>
           </div>
         </div>
@@ -122,7 +124,7 @@ const Pricing = () => {
         </div>
       </div>
     </div>
-  </div>
+  </Link>
   );
 };
 

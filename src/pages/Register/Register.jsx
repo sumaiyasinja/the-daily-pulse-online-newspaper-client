@@ -6,6 +6,7 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import useAuth from "./../../hooks/useAuth";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { createUserWithEmail, loginWithGoogle } = useAuth();
@@ -112,6 +113,9 @@ const Register = () => {
 
   return (
     <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2  xl:grid-cols-5">
+       <Helmet>
+        <title>The Daily Pulse | Register</title>
+      </Helmet>
       <Toaster></Toaster>
       <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-3 bg-gray-50">
         <img

@@ -22,6 +22,7 @@ import DashboardHome from "../pages/AdminDashboard/DashboardHome";
 import PremiumArticles from "../pages/Articales/PremiumArticles";
 import UpdateArticle from "../pages/Articales/UpdateArticle";
 import PaymentHistory from './../pages/Subscription/Payment/PaymentHistory';
+import PremiumRoute from "./PremiumUserRoute";
 
 
  const router = createBrowserRouter([
@@ -82,7 +83,7 @@ import PaymentHistory from './../pages/Subscription/Payment/PaymentHistory';
       },   
       {
         path: "/premiumArticles",
-        element: <PrivateRoute><PremiumArticles></PremiumArticles></PrivateRoute>
+        element: <PrivateRoute><PremiumRoute><PremiumArticles></PremiumArticles></PremiumRoute></PrivateRoute>
       },   
       {
         path: "/paymentHistory",

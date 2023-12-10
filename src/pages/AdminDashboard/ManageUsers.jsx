@@ -3,6 +3,7 @@ import useUser from "../../hooks/useUser";
 import useAxiosSecure from './../../hooks/useAxiosSecure';
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ManageUsers = () => {
   const [users, refetch] = useUser();
@@ -47,6 +48,9 @@ const ManageUsers = () => {
   }
   return (
     <div className="container mx-auto px-5 shadow-md h-screen  rounded-lg py-6">
+            <Helmet>
+        <title>The Daily Pulse | Manage Users</title>
+      </Helmet>
       <Toaster />
       <div id="last-users w-full ">
         <h1 className="font-bold py-4 uppercase"> users</h1>

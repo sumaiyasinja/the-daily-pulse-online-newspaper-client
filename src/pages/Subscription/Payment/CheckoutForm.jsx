@@ -89,6 +89,19 @@ console.log("date",Date.now() + subscriptionOption.duration * 1000)
         console.log("payment saved", res.data);
         if (res.data?.paymentResult?.insertedId) {
           toast.success("Thanks for subscribing")
+          let email= user.email
+
+          axiosSecure.put(`users/make-user-premium/${email}`, { email })
+          .then (res => {
+              console.log(res.data);
+              if(res.data.modifiedCount > 0){
+                  toast.success("User updated successfully")
+              }else{
+                  toast.error("Something went wrong")
+              }
+              
+          }).catch(err => console.log(err))
+      
          
           navigate("/paymentHistory");
         }

@@ -43,7 +43,7 @@ const Navbar = () => {
           </NavLink>
           <NavLink
             className="hover:bg-blue-400 px-2 py-1 rounded"
-            to="/dashboard"
+            to="/dashboard/home"
           >
             Dashboard
           </NavLink>

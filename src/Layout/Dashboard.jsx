@@ -2,12 +2,15 @@ import { Link, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { FaBlog, FaIdCard } from "react-icons/fa";
 import Navbar from "../components/Navbar/Navbar";
-import Footer from "../components/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const { user } = useAuth();
   return (
     <div className="antialiased bg-slate-900 w-full min-h-screen h-full text-slate-300 relative py-4">
+         <Helmet>
+        <title>The Daily Pulse | Dashboard</title>
+      </Helmet>
       <Navbar />
       <div className="grid grid-cols-12 mx-auto gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl h-full my-10 px-2">
        {/* fixed grid elements */}

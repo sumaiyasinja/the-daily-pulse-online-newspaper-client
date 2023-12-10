@@ -4,6 +4,7 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const UserProfile = () => {
   const { user } = useAuth();
@@ -56,6 +57,9 @@ const UserProfile = () => {
 
   return (
     <div className="bg-inherit flex flex-col justify-center items-center">
+       <Helmet>
+        <title>The Daily Pulse | User Profile</title>
+      </Helmet>
       <Toaster></Toaster>
       <p className="text-4xl font-semibold mb-4 text-gray-500">User Profile</p>
       <div

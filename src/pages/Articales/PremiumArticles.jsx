@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import usePremiumArticles from './../../hooks/usePremiumArticles';
+import usePremiumArticles from "./../../hooks/usePremiumArticles";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const PremiumArticles = () => {
-  const [articles] = usePremiumArticles();
+  const [articles, refetch, loading] = usePremiumArticles();
   const axiosPublic = useAxiosSecure();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+
+  if (loading) {
+    <progress className="progress w-56"></progress>;
+  }
 
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -27,15 +32,19 @@ const PremiumArticles = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
+          refetch();
           toast.success("View increased successfully");
         } else {
           toast.error("Updating view went wrong");
-          navigate("/");
+          history.back();
         }
       });
   };
   return (
-    <div >
+    <div>
+       <Helmet>
+        <title>The Daily Pulse | Premium Articles</title>
+      </Helmet>
       <div className="px-4 bg-fuchsia-100 rounded my-3 py-1 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className=" border-t border-b divide-y">
           <h2 className="Font-bold text-fuchsia-500">Premium Articles</h2>

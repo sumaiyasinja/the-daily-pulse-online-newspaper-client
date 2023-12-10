@@ -3,6 +3,7 @@ import useAxiosPublic from './../../hooks/useAxiosPublic';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import useAxiosSecure from './../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const ArticleDetails = () => {
   const [article, setArticle] = useState([]);
@@ -24,6 +25,9 @@ const ArticleDetails = () => {
     // console.log(article);
   return (
     <div className="max-w-screen-lg mx-auto"> 
+          <Helmet>
+        <title>The Daily Pulse | {article?.title}</title>
+      </Helmet>
       {/* main */}
       <main className={`mt-10 ${article?.isPremium && "rounded border shadow-md border-purple-400-200 px-5 py-3"}`}>
         <div className="mb-4 md:mb-0 w-full mx-auto relative">

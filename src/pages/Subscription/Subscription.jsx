@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Payment from './Payment/Payment';
+import { Helmet } from 'react-helmet-async';
 
 const Subscription = () => {
   const subscriptionOptions = [
@@ -23,7 +24,7 @@ const Subscription = () => {
     },
   ];
 
-  const [selectedOption, setSelectedOption] = useState(null); // Initialize with null
+  const [selectedOption, setSelectedOption] = useState(null); 
 
   const handleChange = (event) => {
     const option = subscriptionOptions.find((option) => option.sno === Number(event.target.value));
@@ -35,7 +36,9 @@ const Subscription = () => {
 
   return (
     <div>
-      
+       <Helmet>
+        <title>The Daily Pulse | Subscription</title>
+      </Helmet>
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="flex flex-col items-center justify-between lg:flex-row">
         <div className="mb-10 lg:max-w-lg lg:pr-5 lg:mb-0">

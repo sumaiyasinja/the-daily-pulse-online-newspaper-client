@@ -13,7 +13,7 @@ const States = () => {
   console.log("users in state",users);
 
   const totalUsers = users.length;
-  let premiumUsers = users.filter ((user) => user?.status === "premium").length;
+  let premiumUsers = users.filter ((user) => user?.premiumTaken === true).length;
   let normalUsers = totalUsers - premiumUsers
 
 

@@ -1,5 +1,6 @@
 import { Chart } from 'react-google-charts';
 import useApprovedArticles from '../../hooks/useApprovedArticles';
+import { Helmet } from 'react-helmet-async';
 
 const DashboardHome = () => {
   const [articles, loading] = useApprovedArticles();
@@ -36,6 +37,9 @@ const DashboardHome = () => {
 
   return (
     <div>
+            <Helmet>
+        <title>The Daily Pulse | Dashboard Home</title>
+      </Helmet>
       {/* Pie Chart */}
       <Chart
         width={'100%'}

@@ -7,6 +7,7 @@ import Sponsor from "../../components/Sponsor/Sponsor";
 import States from "../../components/States/States";
 import Banner from "./Banner";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
@@ -30,6 +31,9 @@ const Home = () => {
   };
   return (
     <div>
+       <Helmet>
+        <title>The Daily Pulse | Home</title>
+      </Helmet>
       <Banner></Banner>
       <NewsContainer></NewsContainer>
       {showModal && (

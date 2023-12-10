@@ -8,9 +8,19 @@ const NewsContainer = () => {
       <section className="px-5 py-10  text-gray-800">
         <div className="container grid grid-cols-12 mx-auto gap-y-6 md:gap-10">
           {/* exclusives all section */}
-          <div className="flex flex-col justify-between col-span-12 py-2 space-y-8 md:space-y-16 md:col-span-3">
+          <Link to="/allArticles" className="flex flex-col justify-between col-span-12 py-2 space-y-8 md:space-y-16 md:col-span-3">
             <div className="flex flex-col space-y-8 md:space-y-12">
               {/* exclisive */}
+              <div className="flex flex-col space-y-2">
+                <h3 className="flex items-center space-x-2 text-gray-600">
+                  <span className="flex-shrink-0 w-2 h-2 uppercase rounded-full bg-blue-600"></span>
+                  <span className="text-xs font-bold tracki uppercase">Exclusive</span>
+                </h3>
+                <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Donec sed elit quis odio mollis dignissim eget et nulla.</a>
+                <p className="text-xs text-gray-600">47 minutes ago by
+                  <a rel="noopener noreferrer" href="#" className="hover:underline text-blue-600">Leroy Jenkins</a>
+                </p>
+              </div>
               <div className="flex flex-col space-y-2">
                 <h3 className="flex items-center space-x-2 text-gray-600">
                   <span className="flex-shrink-0 w-2 h-2 uppercase rounded-full bg-blue-600"></span>
@@ -37,9 +47,10 @@ const NewsContainer = () => {
                 </svg>
               </a>
             </div>
+           
                         {/* exclusives more end*/}
 
-          </div>
+          </Link>
                     {/* exclusives all section end */}
 
           <div
@@ -62,10 +73,10 @@ const NewsContainer = () => {
           <div className="hidden py-2 xl:col-span-3 lg:col-span-4 md:hidden lg:block">
             <div className="mb-8 space-x-5 border-b-2 border-opacity-10 border-blue-600">
               <button type="button" className="pb-5 text-xs font-bold uppercase border-b-2 border-blue-600">Latest</button>
-              <button type="button" className="pb-5 text-xs font-bold uppercase border-b-2 border-transparent text-gray-600">Popular</button>
+              <button type="button" className="pb-5 text-xs font-bold uppercase border-b-2 border-transparent text-gray-600"></button>
             </div>
             {/* news card container */}
-            <div className="flex flex-col divide-y divide-gray-300">
+            <Link to={"/allArticles"} className="flex flex-col divide-y divide-gray-300">
               
               {/* news card of sidebar */}
               <div className="flex px-1 py-4">
@@ -73,16 +84,50 @@ const NewsContainer = () => {
                 "https://source.unsplash.com/random/245x325" 
                 />
                 <div className="flex flex-col flex-grow">
-                  <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Nulla consectetur efficitur.</a>
+                  <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Top news.</a>
                   <p className="mt-auto text-xs text-gray-600">14 minutes ago
                     <a rel="noopener noreferrer" href="#" className="block text-blue-400 lg:ml-2 lg:inline hover:underline">Sports</a>
                   </p>
                 </div>
               </div>
-                           {/* add more news card of sidebar here*/}
+              <div className="flex px-1 py-4">
+                <img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 bg-gray-500" src=
+                "https://source.unsplash.com/random/245x325" 
+                />
+                <div className="flex flex-col flex-grow">
+                  <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Top news.</a>
+                  <p className="mt-auto text-xs text-gray-600">14 minutes ago
+                    <a rel="noopener noreferrer" href="#" className="block text-blue-400 lg:ml-2 lg:inline hover:underline">Sports</a>
+                  </p>
+                </div>
+              </div>
+              <div className="flex px-1 py-4">
+                <img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 bg-gray-500" src=
+                "https://source.unsplash.com/random/245x325" 
+                />
+                <div className="flex flex-col flex-grow">
+                  <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Top news.</a>
+                  <p className="mt-auto text-xs text-gray-600">14 minutes ago
+                    <a rel="noopener noreferrer" href="#" className="block text-blue-400 lg:ml-2 lg:inline hover:underline">Sports</a>
+                  </p>
+                </div>
+              </div>
+              <div className="flex px-1 py-4">
+                <img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 bg-gray-500" src=
+                "https://source.unsplash.com/random/245x325" 
+                />
+                <div className="flex flex-col flex-grow">
+                  <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Top news.</a>
+                  <p className="mt-auto text-xs text-gray-600">14 minutes ago
+                    <a rel="noopener noreferrer" href="#" className="block text-blue-400 lg:ml-2 lg:inline hover:underline">Sports</a>
+                  </p>
+                </div>
+              </div>
+              
+              {/* add more news card of sidebar here*/}
 
               
-            </div>
+            </Link>
           </div>
         </div>
       </section>

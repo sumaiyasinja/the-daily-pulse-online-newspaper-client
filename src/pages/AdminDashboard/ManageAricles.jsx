@@ -4,6 +4,7 @@ import useArticles from "./../../hooks/useArticles";
 import { FaTrash } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const ManageAricles = () => {
   const [articles, loading, refetch] = useArticles();
   const axiosSecure = useAxiosSecure();
@@ -121,6 +122,9 @@ const ManageAricles = () => {
   // console.log(articles);
   return (
     <div className="container mx-auto px-5 shadow-md h-screen  rounded-lg py-6">
+         <Helmet>
+        <title>The Daily Pulse | Manage Articles</title>
+      </Helmet>
       <Toaster />
       <div id="last-articles w-full ">
         <h1 className="font-bold py-4 uppercase"> articles</h1>

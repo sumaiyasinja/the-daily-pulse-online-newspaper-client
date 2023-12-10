@@ -46,6 +46,9 @@ const [publishers] = usePublishers();
     try {
       // Upload image to ImgBB
       const response = await axiosPublic.post(image_hosting_api, formData);
+
+    console.log("ImgBB Response:", response);
+
       const imageUrl = response.data.data.url;
 
       // Continue with article submission
@@ -110,7 +113,7 @@ const [publishers] = usePublishers();
         });
     } catch (error) {
       console.error("Error uploading image:", error);
-      toast.error("Error uploading image");
+      toast.error("Error uploading image. Make Sure you have used correct img extension");
     }
   };
 

@@ -4,6 +4,9 @@ import SectionTitle from './../../components/SectionTitle/SectionTitle';
 const AboutUs = () => {
     return (
         <div>
+               <Helmet>
+        <title>The Daily Pulse | About Us</title>
+      </Helmet>
             <SectionTitle heading="About Us"></SectionTitle>
             <div className="grid grid-cols-2  gap-3 justfy-center items-center">
             <Map></Map>

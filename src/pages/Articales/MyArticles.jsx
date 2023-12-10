@@ -6,6 +6,7 @@ import { FaTrash } from 'react-icons/fa';
 import useMyArticles from '../../hooks/useMyArticles';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const MyArticles = () => {
     const [articles, refetch] = useMyArticles();
@@ -52,6 +53,9 @@ const MyArticles = () => {
     
     return (
         <div className="container mx-auto px-5 shadow-md h-screen  rounded-lg py-6">
+        <Helmet>
+        <title>The Daily Pulse | My Articles</title>
+      </Helmet>
         <Toaster />
         <div id="last-articles w-full ">
           <h1 className="font-bold py-4 uppercase">My articles</h1>
@@ -81,7 +85,7 @@ const MyArticles = () => {
                       <span>{article?.title}</span>
                     </div>
                   </td>
-                  <td className="py-3 px-2"><button className='hover:underline'>view details</button></td>
+                  <td className="py-3 px-2"><Link to={`/view-deatials/${article._id}`} className='hover:underline'>view details</Link></td>
                   
                   {article?.status === "approved" ? (
                                         <td className="py-3  px-2">approved</td>
@@ -98,6 +102,7 @@ const MyArticles = () => {
                         document.getElementById("feedback-modal").showModal();
                       }}
                       >view feedback</button>
+                      
                     </td></>
                   ) : (
                     <td className="py-3 px-2 flex flex-col space-y-2 text-gray-500">

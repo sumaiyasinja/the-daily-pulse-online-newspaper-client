@@ -5,6 +5,7 @@ import { FaGoogle } from "react-icons/fa";
 import "../../css/GoogleSignInButton.css";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { auth } from "../../firebase/firebase.config";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -59,6 +60,9 @@ const Login = () => {
   return (
     <section className="p-6 bg-gray-100 text-gray-800">
       <Toaster />
+      <Helmet>
+        <title>The Daily Pulse | Login</title>
+      </Helmet>
       <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5">
         <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 bg-gray-50">
           <span className="block mb-2 text-blue-600">Welcome Back!</span>

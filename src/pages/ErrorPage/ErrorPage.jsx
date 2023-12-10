@@ -6,10 +6,10 @@ import Heading from "../../components/Navbar/Heading";
 const ErrorPage = () => {
   return (
     <div>
-      {/* <Helmet>
+      <Helmet>
           <title>The Daily Pulse | Error Page
       </title>
-        </Helmet>  */}
+        </Helmet> 
       <Heading></Heading>
       <Navbar></Navbar>
 
