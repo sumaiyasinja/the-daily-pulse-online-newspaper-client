@@ -1,7 +1,9 @@
                                 
 # The Daily Pulse
 
-[The Daily Pulse](https://newspaper-fe849.web.app/)
+[Live preview](https://newspaper-fe849.web.app/)
+<br/>
+[Server site code link](https://github.com/sumaiyasinja/the-daily-pulse-online-newspaper-server)
 
 ## Authors
 
